@@ -6,3 +6,4 @@
 5. Auto Hot Key
 6. Flux
 7. Sublime Text Editor
+8. Virtual Desktop Manager - 9Desks http://www.hexagora.com/en_dw_9desks.asp
