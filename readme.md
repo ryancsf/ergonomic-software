@@ -6,6 +6,7 @@
 5. Auto Hot Key
 6. Flux
 7. Sublime Text Editor
+8. Virtual Desktop Manager - 9Desks http://www.hexagora.com/en_dw_9desks.asp
 
 ## Reference List
 1. https://www.donationcoder.com/Software/Skrommel/index.html#LabelControl
@@ -18,3 +19,15 @@
 - http://lifehacker.com/212816/hack-attack-operate-your-mouse-with-your-keyboard
 - https://bitshepherd.blogspot.sg/2006/11/autohotkey-lifehacker-not-enough-sleep.html
 - Divides the desktop into 12 grid, selectable using numpad 
+
+## Sublime Editor Packages
+1. Advanced New File
+2. Boxy Theme
+3. JSHint Gutter
+4. Package Control
+5. HTML/CSS/JS Prettify
+6. FileDiff
+7. CSSComb
+8. Color Highlighter
+9. Bracket Highlighter
+10. Emmet
