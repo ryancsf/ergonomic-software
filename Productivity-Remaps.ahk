@@ -1,24 +1,8 @@
 ﻿Capslock::Backspace
-Rwin::LShift
-
-WheelLeft::
-    if(  not GetKeyState("WheelLeft")  )
-        sleep 200
-
-    Send, {Browser_Back}
-return
-
-WheelRight::
-    if(  not GetKeyState("WheelRight")  )
-        sleep 200
-
-    Send, {Browser_Forward}
-return
-
-XButton1::^w
-
-<+WheelUp::Send, ^+{TAB}
-<+WheelDown::Send, ^{TAB}
+RControl::Capslock
++LButton::Send, ^w
++WheelUp::Send, ^+{TAB}
++WheelDown::Send, ^{TAB}
 
 ;; Wheel Scroll Tabs for Google Chrome
 
@@ -31,3 +15,14 @@ XButton1::^w
                                  Else Send ^{PgUp}
 Return
 #IfWinActive
+
+#If GetKeyState("CapsLock", "T")
+  s::Home
+  f::End
+  e::PgUp
+  d::PgDn
+  i::Up
+  k::Down
+  j::Left
+  l::Right
+#If

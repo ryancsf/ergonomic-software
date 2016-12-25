@@ -98,11 +98,11 @@ SetMouseDelay, -1
 Hotkey, *NumPad0, ButtonLeftClick
 Hotkey, *s, ButtonLeftClickIns
 Hotkey, *NumPad5, ButtonMiddleClick
-Hotkey, *r, ButtonMiddleClickClear
+Hotkey, *d, ButtonMiddleClickClear
 Hotkey, *NumPadDot, ButtonRightClick
 Hotkey, *f, ButtonRightClickDel
 Hotkey, *q, ReOpenTab
-Hotkey, *h, CloseWindow
+Hotkey, *h, CenterMouse
 
 Hotkey, *;, SwitchWindows
 Hotkey, *w, CloseTab
@@ -111,8 +111,8 @@ Hotkey, *l, ButtonXUp
 Hotkey, *j, ButtonXDown
 Hotkey, *i, ButtonYUp
 Hotkey, *k, ButtonYDown
-Hotkey, *e, ButtonZUp
-Hotkey, *d, ButtonZDown
+Hotkey, *+Space, PageUpHotKey
+Hotkey, *Space, ButtonZDown
 Hotkey, *g, TabRight
 Hotkey, *a, TabLeft
 
@@ -137,8 +137,8 @@ return
 ;Key activation support
 
 $?::
-  Send ?
   SetScrollLockState, Off
+  Send ?
 Return
 
 ~RShift::
@@ -154,7 +154,7 @@ If ScrollLockState = D
     Hotkey, *NumPad0, on
     Hotkey, *s, on
     Hotkey, *NumPad5, on
-    Hotkey, *r, on
+    Hotkey, *d, on
     Hotkey, *NumPadDot, on
     Hotkey, *f, on
     Hotkey, *q, on
@@ -167,8 +167,8 @@ If ScrollLockState = D
     Hotkey, *j, on
     Hotkey, *i, on
     Hotkey, *k, on
-    Hotkey, *e, on
-    Hotkey, *d, on
+    Hotkey, *+Space, on
+    Hotkey, *Space, on
     Hotkey, *g, on
     Hotkey, *a, on
     Hotkey, *LShift, on
@@ -193,7 +193,7 @@ else
     Hotkey, *NumPad0, off
     Hotkey, *s, off
     Hotkey, *NumPad5, off
-    Hotkey, *r, off
+    Hotkey, *d, off
     Hotkey, *NumPadDot, off
     Hotkey, *f, off
     Hotkey, *q, off
@@ -206,8 +206,8 @@ else
     Hotkey, *j, off
     Hotkey, *i, off
     Hotkey, *k, off
-    Hotkey, *e, off
-    Hotkey, *d, off
+    Hotkey, *+Space, off
+    Hotkey, *Space, off
     Hotkey, *g, off
     Hotkey, *a, off
     Hotkey, *LShift, off
@@ -402,8 +402,10 @@ ReOpenTab:
   Send ^+{t}
 Return
 
-CloseWindow:
-  Send !{F4}
+CenterMouse:
+  CoordMode, Mouse, Screen
+  MouseMove, (A_ScreenWidth // 2), (A_ScreenHeight // 2)
+
 Return
 
 ButtonWUp:
@@ -727,6 +729,10 @@ tXMagnitude:=tXMagnitude+1
 tYMagnitude:=tYMagnitude+1
 ToolTip, % "tXY Magnitude up to: " . tXMagnitude
 SetTimer, RemoveToolTip, 5000
+Return
+
+PageUpHotKey:
+  Send {PgUp}
 Return
 
 ButtonSpeedUp:
