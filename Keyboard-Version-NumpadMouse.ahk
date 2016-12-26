@@ -112,7 +112,7 @@ Hotkey, *j, ButtonXDown
 Hotkey, *i, ButtonYUp
 Hotkey, *k, ButtonYDown
 Hotkey, *+Space, PageUpHotKey
-Hotkey, *Space, ButtonZDown
+Hotkey, *Space, PageDownHotKey
 Hotkey, *g, TabRight
 Hotkey, *a, TabLeft
 Hotkey, *LShift, ButtonSpeedUp
@@ -410,7 +410,7 @@ TopMiddle:
     sectorHeight := resolutionBottom
     sectorWidth := Floor(sectorWidth/3)
     sectorHeight := Floor(sectorHeight/3)
-    
+
     sectorTopX := sectorTopX + sectorWidth
 
     ;; Standard Execution
@@ -860,7 +860,11 @@ SetTimer, RemoveToolTip, 5000
 Return
 
 PageUpHotKey:
-  Send {PgUp}
+  Send {Up 1}
+Return
+
+PageDownHotKey:
+  Send {Down 1}
 Return
 
 ButtonSpeedUp:
