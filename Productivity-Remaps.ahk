@@ -1,5 +1,4 @@
 ﻿Capslock::Backspace
-RControl::Capslock
 +LButton::Send, ^w
 +WheelUp::Send, ^+{TAB}
 +WheelDown::Send, ^{TAB}
@@ -16,13 +15,15 @@ RControl::Capslock
 Return
 #IfWinActive
 
-#If GetKeyState("CapsLock", "T")
-  s::Home
-  f::End
-  e::PgUp
-  d::PgDn
-  i::Up
-  k::Down
-  j::Left
-  l::Right
-#If
+;; Commented out until further use
+;; RControl::Capslock
+;; #If GetKeyState("CapsLock", "T")
+;;  s::Home
+;;  f::End
+;;  e::PgUp
+;;  d::PgDn
+;;  i::Up
+;;  k::Down
+;;  j::Left
+;;  l::Right
+;; #If
