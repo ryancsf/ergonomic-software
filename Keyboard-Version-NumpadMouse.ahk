@@ -199,15 +199,15 @@ else
     Hotkey, *a, off
     Hotkey, *LShift, off
     Hotkey, *LCtrl, off
-    Hotkey, *1, on
-    Hotkey, *2, on
-    Hotkey, *3, on
-    Hotkey, *4, on
-    Hotkey, *5, on
-    Hotkey, *6, on
-    Hotkey, *7, on
-    Hotkey, *8, on
-    Hotkey, *9, on
+    Hotkey, *1, off
+    Hotkey, *2, off
+    Hotkey, *3, off
+    Hotkey, *4, off
+    Hotkey, *5, off
+    Hotkey, *6, off
+    Hotkey, *7, off
+    Hotkey, *8, off
+    Hotkey, *9, off
 }
 return
 
