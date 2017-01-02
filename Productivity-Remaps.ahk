@@ -1,5 +1,5 @@
 ﻿Capslock::Backspace
-+LButton::Send, ^w
++RButton::Send, ^w
 +WheelUp::Send, ^+{TAB}
 +WheelDown::Send, ^{TAB}
 
