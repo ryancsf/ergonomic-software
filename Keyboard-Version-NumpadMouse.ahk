@@ -127,9 +127,6 @@ Hotkey, *7, BtmLeft
 Hotkey, *8, BtmMiddle
 Hotkey, *9, BtmRight
 
-Gosub, ~RShift  ; Initialize based on current ScrollLock state.
-return
-
 ;Key activation support
 
 $?::
@@ -860,11 +857,11 @@ SetTimer, RemoveToolTip, 5000
 Return
 
 PageUpHotKey:
-  Send {Up 1}
+  Send {Up 10}
 Return
 
 PageDownHotKey:
-  Send {Down 1}
+  Send {Down 10}
 Return
 
 ButtonSpeedUp:
