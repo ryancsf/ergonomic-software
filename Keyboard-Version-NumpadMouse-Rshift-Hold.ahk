@@ -1,4 +1,4 @@
-;START OF CONFIG SECTION
+﻿;START OF CONFIG SECTION
 
 #SingleInstance force
 #MaxHotkeysPerInterval 500
@@ -37,9 +37,6 @@ tXMagnitude:=5.000000
 tYMagnitude:=5.000000
 tZMagnitude:=1.000000
 tWMagnitude:=1.000000
-
-;; Standard Setup For sector targetting
-SysGet, resolution, Monitor
 
 ;END OF CONFIG SECTION
 
@@ -98,11 +95,14 @@ Buttons:=0
 SetKeyDelay, -1
 SetMouseDelay, -1
 
+Hotkey, *NumPad0, ButtonLeftClick
 Hotkey, *s, ButtonLeftClickIns
-Hotkey, *d, ButtonMiddleClickClear
+Hotkey, *NumPad5, ButtonMiddleClick
+Hotkey, *r, ButtonMiddleClickClear
+Hotkey, *NumPadDot, ButtonRightClick
 Hotkey, *f, ButtonRightClickDel
 Hotkey, *q, ReOpenTab
-Hotkey, *h, CenterMouse
+Hotkey, *h, CloseWindow
 
 Hotkey, *;, SwitchWindows
 Hotkey, *w, CloseTab
@@ -111,46 +111,40 @@ Hotkey, *l, ButtonXUp
 Hotkey, *j, ButtonXDown
 Hotkey, *i, ButtonYUp
 Hotkey, *k, ButtonYDown
-Hotkey, *+Space, PageUpHotKey
-Hotkey, *Space, PageDownHotKey
+Hotkey, *e, ButtonZUp
+Hotkey, *d, ButtonZDown
 Hotkey, *g, TabRight
 Hotkey, *a, TabLeft
+
+Hotkey, *NumPad8, ButtontYMagnitudeUp
+Hotkey, *NumPad2, ButtontYMagnitudeDown
+Hotkey, *NumPad9, ButtontZMagnitudeUp
+Hotkey, *NumPad1, ButtontZMagnitudeDown
+Hotkey, *NumPad7, ButtontWMagnitudeUp
+Hotkey, *NumPad3, ButtontWMagnitudeDown
+Hotkey, *NumPad0, ButtonLockClick
+Hotkey, *NumPadDot, ButtonLockMovement
+Hotkey, *NumPad5, ButtonShowCoordinatesTooltip
 Hotkey, *LShift, ButtonSpeedUp
 Hotkey, *LCtrl, ButtonSpeedDown
-Hotkey, *1, TopLeft
-Hotkey, *2, TopMiddle
-Hotkey, *3, TopRight
-Hotkey, *4, MiddleLeft
-Hotkey, *5, MiddleMiddle
-Hotkey, *6, MiddleRight
-Hotkey, *7, BtmLeft
-Hotkey, *8, BtmMiddle
-Hotkey, *9, BtmRight
+Hotkey, /, Question
 
 
-Gosub, ~RShift  ; Initialize based on current ScrollLock state.
+Hotkey, NumPadEnter, ButtonEnter
+
+Gosub, ScrollLock  ; Initialize based on current ScrollLock state.
 return
 
 ;Key activation support
 
-$?::
-  SetScrollLockState, On
-  Send ?
-Return
-
-~RShift::
-; Wait for it to be released because otherwise the hook state gets reset
-; while the key is down, which causes the up-event to get suppressed,
-; which in turn prevents toggling of the ScrollLock state/light:
-Send {ScrollLock}
-KeyWait, RShift
-GetKeyState, ScrollLockState, ScrollLock, T
-If ScrollLockState = D
-{
+ScrollLock::
     RestoreCursors()
     SetTimer, RemoveToolTip, 2000
+    Hotkey, *NumPad0, off
     Hotkey, *s, off
-    Hotkey, *d, off
+    Hotkey, *NumPad5, off
+    Hotkey, *r, off
+    Hotkey, *NumPadDot, off
     Hotkey, *f, off
     Hotkey, *q, off
     Hotkey, *h, off
@@ -162,27 +156,32 @@ If ScrollLockState = D
     Hotkey, *j, off
     Hotkey, *i, off
     Hotkey, *k, off
-    Hotkey, *+Space, off
-    Hotkey, *Space, off
+    Hotkey, *e, off
+    Hotkey, *d, off
     Hotkey, *g, off
     Hotkey, *a, off
     Hotkey, *LShift, off
-    Hotkey, *LCtrl, off
-    Hotkey, *1, off
-    Hotkey, *2, off
-    Hotkey, *3, off
-    Hotkey, *4, off
-    Hotkey, *5, off
-    Hotkey, *6, off
-    Hotkey, *7, off
-    Hotkey, *8, off
-    Hotkey, *9, off
-}
-else
-{
+
+    Hotkey, *NumPad8, off
+    Hotkey, *NumPad2, off
+    Hotkey, *NumPad9, off
+    Hotkey, *NumPad1, off
+    Hotkey, *NumPad7, off
+    Hotkey, *NumPad3, off
+    Hotkey, *NumPad0, off
+    Hotkey, *NumPadDot, off
+    Hotkey, *NumPad5, off
+
+    Hotkey, NumPadEnter, off
+return
+
+RShift::
     SetSystemCursor()
+    Hotkey, *NumPad0, on
     Hotkey, *s, on
-    Hotkey, *d, on
+    Hotkey, *NumPad5, on
+    Hotkey, *r, on
+    Hotkey, *NumPadDot, on
     Hotkey, *f, on
     Hotkey, *q, on
     Hotkey, *h, on
@@ -194,23 +193,67 @@ else
     Hotkey, *j, on
     Hotkey, *i, on
     Hotkey, *k, on
-    Hotkey, *+Space, on
-    Hotkey, *Space, on
+    Hotkey, *e, on
+    Hotkey, *d, on
     Hotkey, *g, on
     Hotkey, *a, on
     Hotkey, *LShift, on
-    Hotkey, *LCtrl, on
-    Hotkey, *1, on
-    Hotkey, *2, on
-    Hotkey, *3, on
-    Hotkey, *4, on
-    Hotkey, *5, on
-    Hotkey, *6, on
-    Hotkey, *7, on
-    Hotkey, *8, on
-    Hotkey, *9, on
-}
+
+    Hotkey, *NumPad8, on
+    Hotkey, *NumPad2, on
+    Hotkey, *NumPad9, on
+    Hotkey, *NumPad1, on
+    Hotkey, *NumPad7, on
+    Hotkey, *NumPad3, on
+    Hotkey, *NumPad0, on
+    Hotkey, *NumPadDot, on
+    Hotkey, *NumPad5, on
+    Hotkey, NumPadEnter, on
+    Hotkey, /, on
 return
+
+RShift Up::
+    RestoreCursors()
+    SetTimer, RemoveToolTip, 2000
+    Hotkey, *NumPad0, off
+    Hotkey, *s, off
+    Hotkey, *NumPad5, off
+    Hotkey, *r, off
+    Hotkey, *NumPadDot, off
+    Hotkey, *f, off
+    Hotkey, *q, off
+    Hotkey, *h, off
+
+    Hotkey, *;, off
+    Hotkey, *w, off
+
+    Hotkey, *l, off
+    Hotkey, *j, off
+    Hotkey, *i, off
+    Hotkey, *k, off
+    Hotkey, *e, off
+    Hotkey, *d, off
+    Hotkey, *g, off
+    Hotkey, *a, off
+    Hotkey, *LShift, off
+
+    Hotkey, *NumPad8, off
+    Hotkey, *NumPad2, off
+    Hotkey, *NumPad9, off
+    Hotkey, *NumPad1, off
+    Hotkey, *NumPad7, off
+    Hotkey, *NumPad3, off
+    Hotkey, *NumPad0, off
+    Hotkey, *NumPadDot, off
+    Hotkey, *NumPad5, off
+    Hotkey, /, off
+
+    Hotkey, NumPadEnter, off
+return
+
+ButtonEnter:
+Send, {NumPadEnter}
+Return
 
 ;Pointer click section
 ;-----------------------
@@ -384,165 +427,9 @@ ReOpenTab:
   Send ^+{t}
 Return
 
-CenterMouse:
-  CoordMode, Mouse, Screen
-  MouseMove, (A_ScreenWidth // 2), (A_ScreenHeight // 2)
+CloseWindow:
+  Send !{F4}
 Return
-
-TopLeft:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
-TopMiddle:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    sectorTopX := sectorTopX + sectorWidth
-
-    ;; Standard Execution
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
-TopRight:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    sectorTopX := sectorTopX + (2*sectorWidth)
-
-    ;; Standard Execution
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
-MiddleLeft:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    sectorTopY := sectorTopY + sectorHeight
-
-    ;; Standard Execution
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
-MiddleMiddle:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    sectorTopX := sectorTopX + sectorWidth
-    sectorTopY := sectorTopY + sectorHeight
-
-    ;; Standard Execution
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
-MiddleRight:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    sectorTopX := sectorTopX + (2*sectorWidth)
-    sectorTopY := sectorTopY + sectorHeight
-
-    ;; Standard Execution
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
-BtmLeft:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    sectorTopY := sectorTopY + (2*sectorHeight)
-    
-    ;; Standard Execution
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
-BtmMiddle:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    sectorTopX := sectorTopX + sectorWidth
-    sectorTopY := sectorTopY + (2*sectorHeight)
-
-    ;; Standard Execution
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
-BtmRight:
-    ;; Standard Setup
-    sectorTopX := 0
-    sectorTopY := 0
-    sectorWidth := resolutionRight
-    sectorHeight := resolutionBottom
-    sectorWidth := Floor(sectorWidth/3)
-    sectorHeight := Floor(sectorHeight/3)
-
-    sectorTopX := sectorTopX + (2*sectorWidth)
-    sectorTopY := sectorTopY + (2*sectorHeight)
-
-    ;; Standard Execution
-    newX := sectorTopX + Floor(sectorWidth/2)
-    newY := sectorTopY + Floor(sectorHeight/2)
-    MouseMove, %newX%, %newY%
-Return
-
 
 ButtonWUp:
     MovementMagnitudeTemp:=+tWMagnitude
@@ -860,12 +747,11 @@ ToolTip, % "Show coordinates traytip? (1 = True, 0 = False): " . ShowCoordinates
 SetTimer, RemoveToolTip, 5000
 Return
 
-PageUpHotKey:
-  Send {Up 10}
-Return
-
-PageDownHotKey:
-  Send {Down 10}
+ButtontXMagnitudeUp:
+tXMagnitude:=tXMagnitude+1
+tYMagnitude:=tYMagnitude+1
+ToolTip, % "tXY Magnitude up to: " . tXMagnitude
+SetTimer, RemoveToolTip, 5000
 Return
 
 ButtonSpeedUp:
@@ -886,6 +772,53 @@ ButtonSpeedDown:
     Send {LCtrl up}
     tXMagnitude = 5.000000
     tYMagnitude = 5.000000
+Return
+
+Question:
+  Send ?
+Return
+
+ButtontXMagnitudeDown:
+tXMagnitude:=tXMagnitude-1
+tYMagnitude:=tYMagnitude-1
+ToolTip, % "tXY Magnitude down to: " . tXMagnitude
+SetTimer, RemoveToolTip, 5000
+Return
+
+ButtontYMagnitudeUp:
+tYMagnitude:=tYMagnitude+1
+ToolTip, % "tY Magnitude up to: " . tYMagnitude
+SetTimer, RemoveToolTip, 5000
+Return
+
+ButtontYMagnitudeDown:
+tYMagnitude:=tYMagnitude-1
+ToolTip, % "tY Magnitude down to: " . tYMagnitude
+SetTimer, RemoveToolTip, 5000
+Return
+
+ButtontZMagnitudeUp:
+tZMagnitude:=tZMagnitude+1
+ToolTip, % "tZ Magnitude up to: " . tZMagnitude
+SetTimer, RemoveToolTip, 5000
+Return
+
+ButtontZMagnitudeDown:
+tZMagnitude:=tZMagnitude-1
+ToolTip, % "tZ Magnitude down to: " . tZMagnitude
+SetTimer, RemoveToolTip, 5000
+Return
+
+ButtontWMagnitudeUp:
+tWMagnitude:=tWMagnitude+1
+ToolTip, % "tW Magnitude up to: " . tWMagnitude
+SetTimer, RemoveToolTip, 5000
+Return
+
+ButtontWMagnitudeDown:
+tWMagnitude:=tWMagnitude-1
+ToolTip, % "tW Magnitude down to: " . tWMagnitude
+SetTimer, RemoveToolTip, 5000
 Return
 
 ButtonRotateEquationAgainstCenterClockwise:

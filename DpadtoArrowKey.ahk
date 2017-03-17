@@ -1,38 +1,22 @@
 #Persistent  ; Keep this script running until the user explicitly exits it.
-SetTimer, WatchPOV, 0
+SetTimer, WatchAxis, 5
 return
 
-WatchPOV:
-GetKeyState, POV, JoyPOV  ; Get position of the POV control.
+WatchAxis:
+GetKeyState, JoyX, JoyX  ; Get position of X axis.
+GetKeyState, JoyY, JoyY  ; Get position of Y axis.
 KeyToHoldDownPrev = %KeyToHoldDown%  ; Prev now holds the key that was down before (if any).
 
-; Some joysticks might have a smooth/continous POV rather than one in fixed increments.
-; To support them all, use a range:
-if POV < 0   ; No angle to report
-    KeyToHoldDown =
-else if POV > 31500                 ; 315 to 360 degrees: Forward
-    if GetKeyState("Joy6", "p")
-	    Send, {Browser_Refresh}
-    else
-    KeyToHoldDown = Up
-else if POV between 0 and 4500      ; 0 to 45 degrees: Forward
-    if GetKeyState("Joy6", "p")
-	    Send, {Browser_Refresh}
-    else
-    KeyToHoldDown = Up
-else if POV between 4501 and 13500  ; 45 to 135 degrees: Right
-    if GetKeyState("Joy6", "p")
-	    Send, {Browser_Forward}
-    else
-		KeyToHoldDown = Right
-else if POV between 13501 and 22500 ; 135 to 225 degrees: Down
-    KeyToHoldDown = Down
-else{                                ; 225 to 315 degrees: Left
-    if GetKeyState("Joy6", "p")
-	    Send, {Browser_Back}
-    else
+if JoyX > 70
+    KeyToHoldDown = Right
+else if JoyX < 30
     KeyToHoldDown = Left
-}
+else if JoyY > 70
+    KeyToHoldDown = Down
+else if JoyY < 30
+    KeyToHoldDown = Up
+else
+    KeyToHoldDown =
 
 if KeyToHoldDown = %KeyToHoldDownPrev%  ; The correct key is already down (or no key is needed).
     return  ; Do nothing.

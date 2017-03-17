@@ -5,6 +5,19 @@
 ; Also, it will move the cursor faster depending on how far you push the joystick
 ; from center. You can personalize various settings at the top of the script.
 
+
+; **CONFIG** 	;
+; green = 1		;
+; red = 2		;
+; blue = 3		;
+; pink = 4		;
+; R1 = 5		;
+; L1 = 6		;
+; R2 = 7		;
+; L2 = 8		;
+; Select = 9	;
+; Start = 10	;
+
 ; Increase the following value to make the mouse cursor move faster:
 JoyMultiplier = 0.10
 
@@ -24,7 +37,6 @@ InvertYAxis := false
 ButtonLeft = 4
 ButtonRight = 3
 ButtonMiddle = 2
-
 
 ; If your joystick has a POV control, you can use it as a mouse wheel.  The
 ; following value is the number of milliseconds between turns of the wheel.
@@ -70,27 +82,39 @@ Joy1::
 		Send, ^{w} ; Green Key, ctrl + w to close tab
 return
 
-#If GetKeyState("Joy6", "p") ; Autohotkey_L directive for enabling following mappings when key is physically down
+#If GetKeyState("Joy6", "p") ; L1
 	Joy1::
 		Send, ^+{t} ; Green Key, ctrl + shift + w to restore tab
 	return
+
+	Joy7::
+		Send, {End} 
+	return 
 
 	Joy5::
 		Send, ^+{Tab} ; L1 Key, ctrl + shift + tab
 	return
 
+	Joy9::
+		Send, +{TAB} ; Shift + Tab
+	return
+
 	Joy10::
-		Send, {Backspace} ; Ctrl + S, save
+		Send, {Backspace} ; L1 + start button
 	return
 #If
 
-#If GetKeyState("Joy8", "p") ; 
+#If GetKeyState("Joy8", "p") ; L2
 	Joy1::
 		Send, ^+{c} ; Green Key, ctrl + shift + c to inspect element
 	return
 
 	Joy5::
-		Send, ^{t} ; L1 Key, ctrl + t, new tab
+		Send, {Browser_Back} ;
+	return
+
+	Joy7::
+		Send, {Browser_Forward} ;
 	return
 
 	Joy10::
@@ -98,21 +122,14 @@ return
 	return
 #If
 
-#If GetKeyState("Joy7", "p") ; 
-	Joy10::
-		Send, !{Tab} ; Alt + Tab for Most Frequent Tab, recurrent tasks
-	return
-
-	Joy1::
-		Send, ^!{c} ; Green Key, ctrl + alt + c to pick color
-	return
-#If
+Joy7:: Send, {Home}
 
 Joy9:: 
-	Send,  ^!{Tab} ; Select Key, ctrl + alt + tab, allows selection of tabs
+	Send, {LAlt Down}{TAB}
 return
 
 Joy10::
+	Send, {LAlt Up}
 	Send, {Enter} ; Start Key, Enter for selection
 return
 
@@ -171,6 +188,7 @@ SetTimer, WaitForMiddleButtonUp, off
 MouseClick, middle,,, 1, 0, U  ; Release the mouse button.
 return
 
+
 WatchJoystick:
 MouseNeedsToBeMoved := false  ; Set default.
 SetFormat, float, 03
@@ -205,7 +223,7 @@ if MouseNeedsToBeMoved
 	SetMouseDelay, -1  ; Makes movement smoother.
 	if (GetKeystate("Joy6") = 1) ; Speed up the mouse cursor
     {
-        JoyMultiplier = 0.6
+        JoyMultiplier = 0.8
     }else if (GetKeystate("Joy8") = 1) ; Slow down the mouse cursor
     {
         JoyMultiplier = 0.05
