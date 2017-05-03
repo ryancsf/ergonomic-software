@@ -1,5 +1,5 @@
-# List of amazing softwares
-1. Clipx
+# List of amazing productivity softwares
+1. Ditto
 2. Greenshot
 3. Launcy
 4. Vista Switcher
