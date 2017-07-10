@@ -83,54 +83,48 @@ Joy1::
 return
 
 #If GetKeyState("Joy6", "p") ; L1
+	;; Triangle/Green
 	Joy1::
 		Send, ^+{t} ; Green Key, ctrl + shift + w to restore tab
 	return
 
-	Joy7::
-		Send, {End} 
-	return 
-
+	;; R1
 	Joy5::
 		Send, ^+{Tab} ; L1 Key, ctrl + shift + tab
 	return
-
-	Joy9::
-		Send, +{TAB} ; Shift + Tab
-	return
-
-	Joy10::
-		Send, {Backspace} ; L1 + start button
-	return
-#If
-
-#If GetKeyState("Joy8", "p") ; L2
-	Joy1::
-		Send, ^+{c} ; Green Key, ctrl + shift + c to inspect element
-	return
-
-	Joy5::
-		Send, {Browser_Back} ;
-	return
-
+	
+	;; R2
 	Joy7::
-		Send, {Browser_Forward} ;
+		Send, ^{-}
+	return 
+
+	Joy8:: Send, {PgUp}
+
+	;; Select Button
+	Joy9::
+		Send, {Browser_Back}
 	return
 
+	;; Start Button
 	Joy10::
-		Send, ^{s} ; Ctrl + S, save
+		Send, {Browser_Forward} ; L1 + start button
 	return
 #If
 
-Joy7:: Send, {Home}
+;; L2 Button
+Joy8:: Send, {PgDn}
 
+;; R2 Button
+Joy7:: Send, ^{+}
+
+;; Select Button
 Joy9:: 
-	Send, {LAlt Down}{TAB}
+	Send, {Backspace}
 return
 
+;; Start Button
 Joy10::
-	Send, {LAlt Up}
-	Send, {Enter} ; Start Key, Enter for selection
+	Send, {Enter}
 return
 
 Joy5::

@@ -1,7 +1,29 @@
-﻿Capslock::Backspace
+﻿#MaxHotkeysPerInterval 200
+
+Capslock::Backspace
 +RButton::Send, ^w
 +WheelUp::Send, ^+{TAB}
 +WheelDown::Send, ^{TAB}
+
+;; For Pen Mouse
+;; RButton::MButton
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;		Logitech T650 mappings for Windows 7.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; 3 finger swipe down --> Task View	
+<#d::
+	Send, ^w
+	Return
+
+;; 4 finger swipe right left only becomes tabs when numpad is OFF
+;; 4 finger swipe down
+;; <#NumpadUp::
+;;	Send, {LWin down}{Tab down}{LWin up}{Tab up}
+;;	Return
 
 ;; Wheel Scroll Tabs for Google Chrome
 

@@ -99,11 +99,11 @@ SetKeyDelay, -1
 SetMouseDelay, -1
 
 Hotkey, *NumPadHome, ButtonLeftClickIns
-Hotkey, *NumPadDiv, ButtonMiddleClickClear
+Hotkey, *NumPadUp, ButtonMiddleClickClear
 Hotkey, *NumPadPgUp, ButtonRightClickDel
 Hotkey, *NumPadClear, ReOpenTab
 Hotkey, *NumPadIns, SwitchWindows
-Hotkey, *NumPadUp, CloseTab
+Hotkey, *NumPadDiv, CloseTab
 Hotkey, *NumPadSub, PageUpHotKey
 Hotkey, *NumPadAdd, PageDownHotKey
 Hotkey, *NumPadRight, TabRight
@@ -111,13 +111,7 @@ Hotkey, *NumPadLeft, TabLeft
 Hotkey, *NumPadMult, SendBackspace
 Hotkey, *NumPadPgDn, Paste
 Hotkey, *NumPadEnd, Copy
-Hotkey, *4, MiddleLeft
-Hotkey, *5, MiddleMiddle
-Hotkey, *6, MiddleRight
-Hotkey, *7, BtmLeft
-Hotkey, *8, BtmMiddle
-Hotkey, *9, BtmRight
-
+Hotkey, *NumPadDown, Undo
 
 Gosub, ~NumLock  ; Initialize based on current ScrollLock state.
 return
@@ -133,11 +127,11 @@ GetKeyState, NumLockState, NumLock, T
 If NumLockState = D
 {
     Hotkey, *NumPadHome, off
-    Hotkey, *NumPadDiv, off
+    Hotkey, *NumPadUp, off
     Hotkey, *NumPadPgUp, off
     Hotkey, *NumPadClear, off
     Hotkey, *NumPadIns, off
-    Hotkey, *NumPadUp, off
+    Hotkey, *NumPadDiv, off
     Hotkey, *NumPadSub, off
     Hotkey, *NumPadAdd, off
     Hotkey, *NumPadRight, off
@@ -145,21 +139,16 @@ If NumLockState = D
     Hotkey, *NumPadMult, off
     Hotkey, *NumPadPgDn, off
     Hotkey, *NumPadEnd, off
-    Hotkey, *4, off
-    Hotkey, *5, off
-    Hotkey, *6, off
-    Hotkey, *7, off
-    Hotkey, *8, off
-    Hotkey, *9, off
+    Hotkey, *NumPadDown, off
 }
 else
 {
     Hotkey, *NumPadHome, on
-    Hotkey, *NumPadDiv, on
+    Hotkey, *NumPadUp, on
     Hotkey, *NumPadPgUp, on
     Hotkey, *NumPadClear, on
     Hotkey, *NumPadIns, on
-    Hotkey, *NumPadUp, on
+    Hotkey, *NumPadDiv, on
     Hotkey, *NumPadSub, on
     Hotkey, *NumPadAdd, on
     Hotkey, *NumPadRight, on
@@ -167,12 +156,7 @@ else
     Hotkey, *NumPadMult, on
     Hotkey, *NumPadPgDn, on
     Hotkey, *NumPadEnd, on
-    Hotkey, *4, on
-    Hotkey, *5, on
-    Hotkey, *6, on
-    Hotkey, *7, on
-    Hotkey, *8, on
-    Hotkey, *9, on
+    Hotkey, *NumPadDown, on
 }
 return
 
@@ -359,6 +343,10 @@ Return
 
 Copy:
     Send, ^c
+Return
+
+Undo:
+    Send, ^z
 Return
 
 Paste:
