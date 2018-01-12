@@ -6,7 +6,9 @@ Capslock::Backspace
 +WheelDown::Send, ^{TAB}
 
 ;; For Pen Mouse
-;; RButton::MButton
+
+;; For YumQua
+RButton::MButton
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
@@ -15,9 +17,9 @@ Capslock::Backspace
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 3 finger swipe down --> Task View	
-<#d::
-	Send, ^w
-	Return
+;;<#d::
+;;	Send, ^w
+;;	Return
 
 ;; 4 finger swipe right left only becomes tabs when numpad is OFF
 ;; 4 finger swipe down
@@ -26,6 +28,18 @@ Capslock::Backspace
 ;;	Return
 
 ;; Wheel Scroll Tabs for Google Chrome
+
+;; For Ace Jump Shortcut
+Ins:: Send, ^+{PgDn}
+
+;; Disable lctrl
+F1::Send, #1
+F2::Send, #2
+F3::Send, ^{a}
+F4::Send, ^{s}
+F6::Send, ^!{g}
+F7::Send, ^t
+
 
 #IfWinActive ahk_class Chrome_WidgetWin_1
  ~$WheelDown::

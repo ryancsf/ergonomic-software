@@ -98,8 +98,6 @@ return
 		Send, ^{-}
 	return 
 
-	Joy8:: Send, {PgUp}
-
 	;; Select Button
 	Joy9::
 		Send, {Browser_Back}
@@ -110,9 +108,6 @@ return
 		Send, {Browser_Forward} ; L1 + start button
 	return
 #If
-
-;; L2 Button
-Joy8:: Send, {PgDn}
 
 ;; R2 Button
 Joy7:: Send, ^{+}

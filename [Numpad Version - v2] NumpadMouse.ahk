@@ -98,20 +98,21 @@ Buttons:=0
 SetKeyDelay, -1
 SetMouseDelay, -1
 
-Hotkey, *NumPadHome, ButtonLeftClickIns
+Hotkey, *NumPadHome, SendLeftClick
 Hotkey, *NumPadUp, ButtonMiddleClickClear
 Hotkey, *NumPadPgUp, ButtonRightClickDel
+Hotkey, *NumPadDel, LastUsedTab
 Hotkey, *NumPadClear, ReOpenTab
-Hotkey, *NumPadIns, SwitchWindows
+Hotkey, *NumPadIns, MiniatureWindow
 Hotkey, *NumPadDiv, CloseTab
 Hotkey, *NumPadSub, PageUpHotKey
 Hotkey, *NumPadAdd, PageDownHotKey
 Hotkey, *NumPadRight, TabRight
 Hotkey, *NumPadLeft, TabLeft
-Hotkey, *NumPadMult, SendBackspace
+Hotkey, *NumPadMult, InspectElement
 Hotkey, *NumPadPgDn, Paste
 Hotkey, *NumPadEnd, Copy
-Hotkey, *NumPadDown, Undo
+Hotkey, *NumPadDown, Save
 
 Gosub, ~NumLock  ; Initialize based on current ScrollLock state.
 return
@@ -129,6 +130,7 @@ If NumLockState = D
     Hotkey, *NumPadHome, off
     Hotkey, *NumPadUp, off
     Hotkey, *NumPadPgUp, off
+    Hotkey, *NumPadDel, off
     Hotkey, *NumPadClear, off
     Hotkey, *NumPadIns, off
     Hotkey, *NumPadDiv, off
@@ -145,6 +147,7 @@ else
 {
     Hotkey, *NumPadHome, on
     Hotkey, *NumPadUp, on
+    Hotkey, *NumPadDel, on
     Hotkey, *NumPadPgUp, on
     Hotkey, *NumPadClear, on
     Hotkey, *NumPadIns, on
@@ -337,16 +340,32 @@ CenterMouse:
   MouseMove, (A_ScreenWidth // 2), (A_ScreenHeight // 2)
 Return
 
+InspectElement:
+    Send, ^+c
+Return
+
 SendBackspace:
     Send, {Backspace}
+Return
+
+SendLeftClick:
+  Click
 Return
 
 Copy:
     Send, ^c
 Return
 
-Undo:
-    Send, ^z
+Save:
+    Send, ^s
+Return
+
+MiniatureWindow:
+    Send, ^{Space}
+Return
+
+LastUsedTab:
+  Send, !s
 Return
 
 Paste:
