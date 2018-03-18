@@ -103,7 +103,7 @@ Hotkey, *NumPadUp, ButtonMiddleClickClear
 Hotkey, *NumPadPgUp, ButtonRightClickDel
 Hotkey, *NumPadDel, LastUsedTab
 Hotkey, *NumPadClear, ReOpenTab
-Hotkey, *NumPadIns, MiniatureWindow
+Hotkey, *NumPadIns, ToggleChromeVSCode
 Hotkey, *NumPadDiv, CloseTab
 Hotkey, *NumPadSub, PageUpHotKey
 Hotkey, *NumPadAdd, PageDownHotKey
@@ -362,6 +362,14 @@ Return
 
 MiniatureWindow:
     Send, ^{Space}
+Return
+
+ToggleChromeVSCode:
+    toggle := !toggle
+        if(toggle)
+            send #1
+        else
+            send #2
 Return
 
 LastUsedTab:
